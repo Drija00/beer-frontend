@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Beer = ({beers,navigate,setCount,count,setCartData,cartData,setClickAddToCart,setClickAddToCart2}) => {
+const Beer = ({beers,navigate,setCount,count,setCartData,cartData}) => {
 
 const openBeerPage = (beerId) =>{
     navigate(`/${beerId}`);
@@ -30,8 +30,6 @@ if (isBeerInCart){
     }
     setCartData(newBeers);
     setCount(count+1);
-    setClickAddToCart("shopping-cart-container");
-    setClickAddToCart2("cart-heading-none");
     }
 
 

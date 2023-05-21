@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect} from 'react'
 import "../Styles/Cart.css"
 import Context from '../Components/Context';
 import { useNavigate } from 'react-router';
@@ -8,8 +8,6 @@ const Cart = () => {
 const context = useContext(Context);
 const count = context.count;
 const setCount = context.setCount;
-  // const clickAddToCart = context.clickAddToCart;
-  // const clickAddToCart2 = context.clickAddToCart2;
 let cartData = context.cartData;
 let setCartData = context.setCartData;
 const subTotal = context.subTotal;
@@ -70,14 +68,12 @@ const removeCartItem = (cartId)=>{
 }
 
 const openTransactionPage = () =>{
-      //ovde setuj loading na true
     navigate("/transactionPage"); 
 }
 
 
 return (
     <div>
-      {/* <h1 className={clickAddToCart2}>Shopping Cart is empty</h1> */}
         <div className='shopping-cart-wrapper'>
         <div className='shopping-cart-container'>
             <h1 className='cart-heading'>Shopping Cart</h1>

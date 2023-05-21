@@ -1,15 +1,21 @@
-import React, { useState } from 'react'
+import React, { useContext,useState } from 'react'
 import logo from '../Images/logo.png'
 import "../Styles/Navbar.css"
 import asc from '../Images/asc.png'
 import dsc from '../Images/dsc.png'
+import Context from './Context'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse } from '@fortawesome/free-solid-svg-icons'
 import {faCartShopping} from '@fortawesome/free-solid-svg-icons'
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
-const Navbar = ({setSearchTerm,setOrderType,count}) => {
+const Navbar = () => {
+    const context = useContext(Context);
+    console.log(context);
+    const setSearchTerm = context.setSearchTerm;
+    const setOrderType = context.setOrderType;
+    const count = context.count;
 
 
     const searchFilter = (event) =>{
