@@ -68,6 +68,7 @@ const removeCartItem = (cartId)=>{
 }
 
 const openTransactionPage = () =>{
+    setCount(0);
     navigate("/transactionPage"); 
 }
 
