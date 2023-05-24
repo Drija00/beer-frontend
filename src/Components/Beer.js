@@ -1,6 +1,7 @@
 import React from 'react'
+import {deleteBeerById} from "../Services/AxiosService";
 
-const Beer = ({beers,navigate,setCount,count,setCartData,cartData}) => {
+const Beer = ({user,beers,navigate,setCount,count,setCartData,cartData,loadBears}) => {
 
 const openBeerPage = (beerId) =>{
     navigate(`/${beerId}`);
@@ -20,7 +21,7 @@ let newBeers;
 if (isBeerInCart){
         newBeers = cartData.map(el=>{
         if(el.id===beer.id){
-            return {...el,qt:el.qt+1,totalPrice:(el.abv*(el.qt+1)).toFixed(1),buttonLabel:"Product added"};
+            return {...el,qt:el.qt+1,totalPrice:(el.price*(el.qt+1)).toFixed(1),buttonLabel:"Product added"};
         }else{
             return el;
         }
@@ -32,20 +33,25 @@ if (isBeerInCart){
     setCount(count+1);
     }
 
+    const deleteBeer= (beer)=>{
+    deleteBeerById(beer.id)
+        .then(res => loadBears());
+}
 
 return (
     beers.map(beer => 
     <div className='beer-card' key={beer.id}>
         <div className='beer-img-box'>
-        <img src={beer.image_url} alt="beers" className='beer-img' onClick={()=>openBeerPage(beer.id)}/>
+        <img src={beer.imageUrl} alt="beers" className='beer-img' onClick={()=>openBeerPage(beer.id)}/>
         </div>
         <div className='beer-details'>
         <h1 className='beer-name'>{name(beer.name)}<span className='last-letter'>{lastLetter(beer.name)}</span></h1>
         <p className='beer-tagline'>{beer.tagline}</p>
-        <p><span className='beer-card-abv'>$</span><label className='beer-card-abv'>{beer.abv}</label></p>
+        <p><span className='beer-card-price'>$</span><label className='beer-card-price'>{beer.price}</label></p>
         </div>
         <div className='button-box'>
         <button className='add-to-cart-btn' onClick={() => {addBeerToCart(beer)}}>Add to cart</button>
+        {user.role == 'ADMIN' ? <button className='add-to-cart-btn' onClick={() => {deleteBeer(beer)}}>Delete</button> : null}
         </div>
     </div>
     )

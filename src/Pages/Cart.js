@@ -19,7 +19,7 @@ const navigate = useNavigate();
 const decrement = (id) =>{
     let newBeers = cartData.map(el=>{
     if(el.id===id && el.qt>1){
-    return {...el,qt:el.qt-1,totalPrice:(el.abv*(el.qt-1)).toFixed(1)};
+    return {...el,qt:el.qt-1,totalPrice:(el.price*(el.qt-1)).toFixed(1)};
     }else{
         return el;
     }
@@ -37,7 +37,7 @@ const increment = (id) =>{
     console.log(cartData)
     let newBeers = cartData.map(el=>{
     if(el.id===id && el.qt<10){
-    return {...el,qt:el.qt+1,totalPrice:(el.abv*(el.qt+1)).toFixed(1)};
+    return {...el,qt:el.qt+1,totalPrice:(el.price*(el.qt+1)).toFixed(1)};
     }else{
         return el;
     }
@@ -81,7 +81,7 @@ return (
             {cartData.map(beer=>
             <div key={beer.id} className='single-product'>
                 <div className='img-box'>
-                    <img src={beer.image_url} alt="beer-image"/>
+                    <img src={beer.imageUrl} alt="beer-image"/>
                 </div>
                 <div className='product-text'>
                     <p>{beer.name}</p>

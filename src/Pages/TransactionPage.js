@@ -29,7 +29,7 @@ return (
             {cartData.map(beer=>
             <div>
                 <label className='transaction-beer-price' key={beer.id}>Beer name: {beer.name}</label>
-                <label className='transaction-beer-price' key={beer.id}>Price: <span>$</span>{beer.abv}</label>
+                <label className='transaction-beer-price' key={beer.id}>Price: <span>$</span>{beer.price}</label>
                 <label className='transaction-beer-price' key={beer.id}>Quantity: {beer.qt}</label>
                 <br></br>
             </div>
