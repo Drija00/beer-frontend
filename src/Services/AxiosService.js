@@ -15,8 +15,9 @@ export const getBeerById = (id) =>{
 }
 
 export const deleteBeerById = (id) =>{
-    // return axios.delete(`${baseUrl}/${id}`);
-    return Promise.resolve();
+    console.log("MJAAAAUUUUU  " + id);
+    return axios.delete(`${baseUrl}/delete/${id}`);
+    //return Promise.resolve();
 }
 
 
@@ -26,8 +27,10 @@ export const loginUser = (username, password) =>{
 }
 
 
-// const createBeer = (data) =>{
-//     return axios.post(`${baseUrl}`,data);
-// }
+export const createReceipt = (user,subTotal) =>{
+    console.log(user.id+ "axios")
+    const params = new URLSearchParams([['userID', user.id],['totalPrice', subTotal]]);
+    axios.post(`${baseUrl}/add-receipt`,params);
+}
 
 // export {getAllBeers,getBeerById};

@@ -13,6 +13,10 @@ let setCartData = context.setCartData;
 const subTotal = context.subTotal;
 const setSubTotal = context.setSubTotal;
 
+console.log(context);
+const beerIds = cartData.map(beer=>beer.price);
+    console.log(beerIds + " cena piva");
+
 const navigate = useNavigate();
 
 
@@ -34,7 +38,7 @@ if(cartData.map(el=>{
 }
 
 const increment = (id) =>{
-    console.log(cartData)
+    console.log(cartData);
     let newBeers = cartData.map(el=>{
     if(el.id===id && el.qt<10){
     return {...el,qt:el.qt+1,totalPrice:(el.price*(el.qt+1)).toFixed(1)};
@@ -69,6 +73,7 @@ const removeCartItem = (cartId)=>{
 
 const openTransactionPage = () =>{
     setCount(0);
+    setCartData([]);
     navigate("/transactionPage"); 
 }
 
@@ -93,7 +98,7 @@ return (
                     <input type="button" value="+" onClick={()=>increment(beer.id)}></input>
                 </div>
                 <div className='product-price'>
-                    <p><span className='beer-card-abv'>$</span><label className='beer-card-abv'>{beer.totalPrice}</label></p>
+                    <p><span className='beer-card-abv'>$</span><label className='beer-card-abv'>{beer.price}</label></p>
                     <label className='remove-btn' onClick={()=>removeCartItem(beer.id)}>Remove</label>
                 </div>
             </div>

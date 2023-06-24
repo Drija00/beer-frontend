@@ -1,13 +1,28 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import "../Styles/TransactionPage.css"
+import Context from '../Components/Context';
 import { useEffect } from 'react'
 import { useState } from 'react';
+import {createReceipt} from "../Services/AxiosService";
 
 const TransactionPage = ({cartData,subTotal}) => {
-
-    console.log(cartData)
+    const context = useContext(Context);
+    const user = context.user;
+    console.log(user.email)
 
     const [loading, setLoading] = useState(false);
+
+    const beerIds = cartData.map(beer=>beer.id);
+    console.log(beerIds + " id piva");
+
+    const addReceipt = ()=>{
+        console.log(user.id);
+        createReceipt(user,subTotal);
+    }
+    useEffect(()=>{
+        addReceipt();
+    },[]);
+    
 
     useEffect(()=>{
     setLoading(true);
@@ -15,6 +30,8 @@ const TransactionPage = ({cartData,subTotal}) => {
         setLoading(false);
     },2000)
     },[])
+
+    
 
 
 return (

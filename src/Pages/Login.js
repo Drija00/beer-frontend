@@ -21,14 +21,22 @@ const Login = () => {
     const doLogin = ()=>{
         // API call for login
         loginUser(username, password).then(res => {
-            const user = res.data;
+            const user = { id: res.data.id, firstname: res.data.firstname, lastname: res.data.lastname, email: res.data.email, role: res.data.role };
+            console.log(user+" IDIOT");
             localStorage.setItem("user",user);
             setUser(user);
+            console.log(user+" RAARAAA");
             navigate("/home");
         }).catch(res => {
             doLogout();
         });
     }
+
+    // "id": 1102,
+    // "firstname": "Pera",
+    // "lastname": "Peric",
+    // "email": "pera@gmail.com",
+    // "role": "ADMIN"
 
     const doLogout = () =>{
         // todo add API call for logout
