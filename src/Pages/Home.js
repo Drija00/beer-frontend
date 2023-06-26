@@ -16,7 +16,6 @@ const setCount = context.setCount;
 const cartData = context.cartData;
 const setCartData = context.setCartData;
 const user = context.user;
-console.log("XXXXXXXXX   "+user.email);
 
 
 const navigate = useNavigate();

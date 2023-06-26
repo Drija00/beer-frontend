@@ -12,7 +12,6 @@ import { Link } from 'react-router-dom'
 
 const Navbar = () => {
     const context = useContext(Context);
-    console.log(context);
     const setSearchTerm = context.setSearchTerm;
     const setOrderType = context.setOrderType;
     const count = context.count;
@@ -37,7 +36,7 @@ return (
         <a href='/home'>
         <img className='logo' src={logo} alt="beer-logo"/>
         </a>
-        : <a href='/login'>
+        : <a href='/'>
         <img className='logo' src={logo} alt="beer-logo"/>
         </a>}
         {user ?
@@ -51,7 +50,7 @@ return (
         <ul>
             <li><Link to='/home'><FontAwesomeIcon className='home-icon' icon={faHouse} /></Link></li>
             <li><Link to="/cart"><FontAwesomeIcon className='cart-icon' icon={faCartShopping} /></Link><span className="circle">{count}</span></li>
-            <li><Link to="/login"><FontAwesomeIcon className='user-icon' icon={faUser} /></Link></li>
+            <li><Link to="/"><FontAwesomeIcon className='user-icon' icon={faUser} /></Link></li>
             <li><label className='user-label'>{user.firstname}</label></li>
         </ul>
         : ""}

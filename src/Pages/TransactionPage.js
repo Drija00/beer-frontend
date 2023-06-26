@@ -4,24 +4,64 @@ import Context from '../Components/Context';
 import { useEffect } from 'react'
 import { useState } from 'react';
 import {createReceipt} from "../Services/AxiosService";
+import { useNavigate } from 'react-router';
 
 const TransactionPage = ({cartData,subTotal}) => {
     const context = useContext(Context);
+    let setCartData = context.setCartData;
     const user = context.user;
-    console.log(user.email)
+    const navigate = useNavigate();
+    let done = false;
 
     const [loading, setLoading] = useState(false);
 
-    const beerIds = cartData.map(beer=>beer.id);
-    console.log(beerIds + " id piva");
+    const beerIDs = cartData.map((beer)=>{ return beer.id});
+    console.log(beerIDs.length + " id piva");
 
-    const addReceipt = ()=>{
+    //{ id: res.data.id, firstname: res.data.firstname, lastname: res.data.lastname, email: res.data.email, role: res.data.role };
+
+    const items = cartData.map((beer)=> {
+        return {beerID: beer.id, quantity: beer.qt}
+    });
+
+    console.log(items[2].quantity);
+
+    items.map((beer)=> {
+        console.log("beerID:"+ beer.id+", quantity:"+ beer.qt);
+    });
+
+    const receipt = {
+        "userID": user.id,
+        "totalPrice": subTotal,
+        "items": items
+}
+
+    const addReceipt = async () => {
+    try {
         console.log(user.id);
-        createReceipt(user,subTotal);
+        // const res = await createReceipt(user, subTotal, items);
+        const res = await createReceipt(receipt);
+        const idReceipt = res.data.id;
+        console.log(idReceipt);
+        done = true;
+        return idReceipt;
+    } catch (error) {
+        // Handle the error appropriately
+        console.error("GRESKA "+error);
     }
-    useEffect(()=>{
-        addReceipt();
-    },[]);
+};
+    useEffect(() => {
+    const fetchData = async () => {
+        let idReceipt = await addReceipt();
+        cartData.map(el => {
+            console.log("receiptID: " + idReceipt + " beerID: " + el.id + " qt: " + el.qt);
+        });
+        console.log(done);
+    };
+
+    fetchData();
+    //setCartData([]);
+}, []);
     
 
     useEffect(()=>{
@@ -31,8 +71,10 @@ const TransactionPage = ({cartData,subTotal}) => {
     },2000)
     },[])
 
-    
-
+    const openHomePage = () =>{
+    setCartData([]);
+    navigate("/home");
+}
 
 return (
     <div className='transaction-page-wrapper'>
@@ -53,6 +95,7 @@ return (
             )}
             <hr className='hr-tp'></hr>
             <p className='subtotal-transaction'>Subtotal: <span>$</span>{subTotal}</p>
+            <button className='pay-btn' onClick={()=>openHomePage()}>Finish</button>
         </div>
         )
     }

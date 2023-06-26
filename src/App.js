@@ -10,12 +10,13 @@ import Login from "./Pages/Login";
 
 function App() {
   const userFromLocalStorage = localStorage.getItem('user');
-  const[user,setUser] = useState(userFromLocalStorage);
-  const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart'));
+  const[user,setUser] = useState(null);
+  //const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart'));
   const[cartData,setCartData] = useState([]);
   const[searchTerm,setSearchTerm] = useState("");
   const[orderType,setOrderType] = useState("");
-  const[count,setCount] = useState(cartFromLocalStorage);
+  // const[count,setCount] = useState(cartFromLocalStorage);
+  const[count,setCount] = useState(0);
   const[subTotal,setSubTotal]=useState(0);
 
 
@@ -25,7 +26,7 @@ function App() {
           <Context.Provider value={{user,setUser,count,setCount,setSearchTerm,searchTerm,cartData,setCartData,setOrderType,orderType,subTotal,setSubTotal}}>
             <Navbar/>
                 <Routes>
-                        <Route path="/login" index element={<Login/>}/>
+                        <Route path="/" index element={<Login/>}/>
                         <Route path="/home" element={<Home/>}/>
                         <Route path=":id" element={<ProductPage/>}/>
                         <Route path="/cart" element={<Cart/>}/>

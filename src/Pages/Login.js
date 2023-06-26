@@ -42,7 +42,7 @@ const Login = () => {
         // todo add API call for logout
         localStorage.setItem("user","");
         setUser("");
-        navigate("/login");
+        navigate("/");
     }
 
     return (

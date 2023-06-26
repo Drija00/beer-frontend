@@ -27,10 +27,18 @@ export const loginUser = (username, password) =>{
 }
 
 
-export const createReceipt = (user,subTotal) =>{
-    console.log(user.id+ "axios")
-    const params = new URLSearchParams([['userID', user.id],['totalPrice', subTotal]]);
-    axios.post(`${baseUrl}/add-receipt`,params);
-}
+// export const createReceipt = (user,subTotal,items) =>{
+//     console.log(user.id+ "axios")
+//     const params = new URLSearchParams([['userID', user.id],['totalPrice', subTotal],['items', items]]);
+//     //console.log(items[0].quantity);
+//     return axios.post(`${baseUrl}/add-receipt`,params);
+// }
 
+export const createReceipt = (receipt) =>{
+    //console.log(user.id+ "axios")
+    //const params = new URLSearchParams([['userID', user.id],['totalPrice', subTotal],['items', items]]);
+    //console.log(items[0].quantity);
+    console.log(receipt);
+    return axios.post(`${baseUrl}/add-receipt`,receipt);
+}
 // export {getAllBeers,getBeerById};

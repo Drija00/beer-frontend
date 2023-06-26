@@ -13,9 +13,6 @@ let setCartData = context.setCartData;
 const subTotal = context.subTotal;
 const setSubTotal = context.setSubTotal;
 
-console.log(context);
-const beerIds = cartData.map(beer=>beer.price);
-    console.log(beerIds + " cena piva");
 
 const navigate = useNavigate();
 
@@ -38,9 +35,9 @@ if(cartData.map(el=>{
 }
 
 const increment = (id) =>{
-    console.log(cartData);
     let newBeers = cartData.map(el=>{
     if(el.id===id && el.qt<10){
+        console.log((el.price*(el.qt+1)).toFixed(1));
     return {...el,qt:el.qt+1,totalPrice:(el.price*(el.qt+1)).toFixed(1)};
     }else{
         return el;
@@ -49,7 +46,7 @@ const increment = (id) =>{
 setCartData(newBeers);
 if(cartData.map(el=>{
     if(el.qt<10){
-    setCount(count+1)
+    setCount(count+1);
     }
 })){
 }
@@ -58,8 +55,13 @@ if(cartData.map(el=>{
 useEffect(()=>{
     let sum = 0;
     cartData.forEach(element => {
-        let totalPrice = parseFloat(element.totalPrice);
-        sum += totalPrice; 
+        if(element.qt==1){
+            let totalPrice = parseFloat(element.price);
+            sum += totalPrice; 
+        }else{
+            let totalPrice = parseFloat(element.totalPrice);
+            sum += totalPrice;
+        } 
     });
     setSubTotal(sum.toFixed(1));
 },[cartData.map(el=>el.totalPrice)]);
@@ -68,15 +70,13 @@ useEffect(()=>{
 const removeCartItem = (cartId)=>{
     let unremovedBeers = cartData.filter(item=>item.id!==cartId);
     setCartData(unremovedBeers);
-    setCount(count-1);
+    setCount(unremovedBeers.length);
 }
 
 const openTransactionPage = () =>{
     setCount(0);
-    setCartData([]);
-    navigate("/transactionPage"); 
+    navigate("/transactionPage");
 }
-
 
 return (
     <div>

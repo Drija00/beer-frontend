@@ -1,7 +1,12 @@
-import React from 'react'
+import React, { useContext, useEffect} from 'react'
+import Context from '../Components/Context';
 import {deleteBeerById} from "../Services/AxiosService";
 
 const Beer = ({user,beers,navigate,setCount,count,setCartData,cartData,loadBears}) => {
+
+const context = useContext(Context);
+const subTotal = context.subTotal;
+const setSubTotal = context.setSubTotal;
 
 const openBeerPage = (beerId) =>{
     navigate(`/${beerId}`);
@@ -33,10 +38,25 @@ if (isBeerInCart){
     setCount(count+1);
     }
 
+
+
+//     useEffect(()=>{
+//     let sum = 0;
+//     console.log(sum + " PREXXX");
+//     cartData.forEach(element => {
+//         let totalPrice = parseFloat(element.totalPrice);
+//         console.log(element.totalPrice + " U TOKUXXX");
+//         sum += totalPrice; 
+//     });
+//     console.log(sum+ " KRAJXXX");
+//     setSubTotal(sum.toFixed(1));
+// },[cartData.map(el=>el.totalPrice)]);
+
     const deleteBeer= (beer)=>{
     deleteBeerById(beer.id)
         .then(res => loadBears());
 }
+
 
 return (
     beers.map(beer => 
