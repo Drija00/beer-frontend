@@ -39,18 +39,30 @@ const AddBeer = () => {
 
     return (
         <div>
-            <div className='login-wrapper'>
-                    <div className='login-container'>
-                        <h1 className='login-heading'>AddBeer</h1>
-
-                        <input type="text" placeholder="Name..." id="name" onChange={(event)=>setName(event.target.value)}></input>
-                        <input type="text" placeholder="Price..." id="price" onChange={(event)=>setPrice(parseFloat(event.target.value))}></input>
-                        <input type="text" placeholder="Tagline..." id="tagline" onChange={(event)=>setTagline(event.target.value)}></input>
-                        <input type="text" placeholder="Description..." id="description" onChange={(event)=>setDescription(event.target.value)}></input>
-                        <input type="text" placeholder="Image url..." id="imageUrl" onChange={(event)=>setImageUrl(event.target.value)}></input>
-
-                        <button className='login-btn' onClick={()=>addNewBeer()}>Add Beer</button>
+            <div>
+                <div>
+                    <div className='form'>
+                        <h1 className = "heading">Add new beer:</h1>
+                        <div>
+                            <input class = "input" type="text" placeholder="Name..." id="name" onChange={(event)=>setName(event.target.value)}></input>
+                        </div>
+                        <div>
+                            <input class = "input" type="text" placeholder="Price..." id="price" onChange={(event)=>setPrice(parseFloat(event.target.value))}></input>
+                        </div>
+                        <div>
+                            <input class = "input" type="text" placeholder="Tagline..." id="tagline" onChange={(event)=>setTagline(event.target.value)}></input>
+                        </div>
+                        <div>
+                            <input class = "input" type="text" placeholder="Description..." id="description" onChange={(event)=>setDescription(event.target.value)}></input>
+                        </div>
+                        <div>
+                            <input class = "input" type="text" placeholder="Image url..." id="imageUrl" onChange={(event)=>setImageUrl(event.target.value)}></input>
+                        </div>
+                        <div>
+                            <button className='login-btn' onClick={()=>addNewBeer()}>Add Beer</button>
+                        </div>
                     </div>
+                </div>
             </div>
         </div>
     )

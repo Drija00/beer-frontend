@@ -45,22 +45,33 @@ const Login = () => {
         navigate("/");
     }
 
+    const register = () =>{
+        navigate("/register");
+    }
+
     return (
         <div>
-            <div className='login-wrapper'>
+            <div >
                 {user ?
-                    <div className='login-container'>
-                        <h1 className='login-heading'>Logout</h1>
+                    <div className='form-logout'>
+                        <h1 className='heading'>Logout</h1>
                         <button className='logout-btn' onClick={()=>doLogout()}>Logout</button>
                     </div>
                 :
+                <div className='form'>
                     <div className='login-container'>
-                        <h1 className='login-heading'>Login</h1>
-
-                        <input type="text" placeholder="Username..." id="email" onChange={(event)=>setUsername(event.target.value)}></input>
-                        <input type="text" placeholder="Password..." id="password" onChange={(event)=>setPassword(event.target.value)}></input>
-
+                        <h1 className = "heading">Login</h1>
+                        <button className='login-btn' onClick={()=>register()}>Register</button>
+                    </div>
+                    <div className='login-container'>
+                        <input type="text" class = "input" placeholder="Username..." id="email" onChange={(event)=>setUsername(event.target.value)}></input>
+                    </div>
+                    <div className='login-container'>
+                        <input type="password" class = "input" placeholder="Password..." id="password" onChange={(event)=>setPassword(event.target.value)}></input>
+                    </div>
+                    <div className='login-container'>
                         <button className='login-btn' onClick={()=>doLogin()}>Login</button>
+                    </div>
                     </div>}
             </div>
         </div>

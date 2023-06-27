@@ -1,6 +1,7 @@
 import Home from "./Pages/Home";
 import ProductPage from "./Pages/ProductPage";
 import AddBeer from "./Pages/AddBeer";
+import Register from "./Pages/Register";
 import {BrowserRouter, BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import { useEffect, useState } from "react";
@@ -32,6 +33,7 @@ function App() {
                         <Route path=":id" element={<ProductPage/>}/>
                         <Route path="/cart" element={<Cart/>}/>
                         <Route path="/add" element={<AddBeer/>}/>
+                        <Route path="/register" element={<Register/>}/>
                         <Route path="/transactionPage" element={<TransactionPage cartData={cartData} subTotal={subTotal}/>}/>
                 </Routes>
             </Context.Provider>

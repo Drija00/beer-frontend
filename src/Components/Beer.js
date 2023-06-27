@@ -1,6 +1,7 @@
 import React, { useContext, useEffect} from 'react'
 import Context from '../Components/Context';
 import {deleteBeerById} from "../Services/AxiosService";
+import "../Styles/Home.css"
 
 const Beer = ({user,beers,navigate,setCount,count,setCartData,cartData,loadBears}) => {
 

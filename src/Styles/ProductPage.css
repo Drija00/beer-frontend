@@ -22,8 +22,10 @@
 
 .product-page-details {
     justify-self: start;
-    margin-top: 2rem;
+    margin-top: 3rem;
     padding: 3rem 0;
+    font-family: 'Archivo Black', sans-serif;
+    color: white;
 }
 
 .details-header {

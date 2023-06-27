@@ -32,6 +32,7 @@ html {
 }
 
 .beer-card {
+    font-family: 'Open Sans', sans-serif;
     margin-top: 1rem;
     width: 21vw;
     height: 85vh;
@@ -104,6 +105,11 @@ html {
     font-size: 3rem;
 }
 
+.beer-details{
+font-family: 'Archivo Black', sans-serif;
+font-size: 10px;
+}
+
 .button-box {
     width: 100%;
 }
@@ -119,8 +125,12 @@ html {
     font-weight: 600;
     font-size: 1.4rem;
     letter-spacing: 0.08rem;
+    margin-bottom: 7px;
     cursor: pointer;
 
+}
+.beer-card-price{
+    font-size: large;
 }
 
 .add-to-cart-btn:hover {
@@ -148,8 +158,10 @@ html {
         font-size: 24px !important;
     }
 
-    .beer-card-abv {
-        font-size: 18px !important;
+    .beer-card-price {
+        font-size: 30px !important;
+        font-weight: bold;
+        font-family: 'Archivo Black', sans-serif;
     }
 }
 
