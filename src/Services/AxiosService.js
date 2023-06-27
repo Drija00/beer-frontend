@@ -35,10 +35,13 @@ export const loginUser = (username, password) =>{
 // }
 
 export const createReceipt = (receipt) =>{
-    //console.log(user.id+ "axios")
-    //const params = new URLSearchParams([['userID', user.id],['totalPrice', subTotal],['items', items]]);
-    //console.log(items[0].quantity);
     console.log(receipt);
     return axios.post(`${baseUrl}/add-receipt`,receipt);
 }
+
+export const addBeer = (beer) =>{
+    console.log(beer);
+    return axios.post(`${baseUrl}/add-beer`,beer);
+}
+
 // export {getAllBeers,getBeerById};

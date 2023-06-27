@@ -24,7 +24,6 @@ const TransactionPage = ({cartData,subTotal}) => {
         return {beerID: beer.id, quantity: beer.qt}
     });
 
-    console.log(items[2].quantity);
 
     items.map((beer)=> {
         console.log("beerID:"+ beer.id+", quantity:"+ beer.qt);

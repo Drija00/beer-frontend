@@ -5,7 +5,7 @@ import asc from '../Images/asc.png'
 import dsc from '../Images/dsc.png'
 import Context from './Context'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faPlus, faUser } from '@fortawesome/free-solid-svg-icons'
 import {faCartShopping} from '@fortawesome/free-solid-svg-icons'
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
@@ -30,6 +30,11 @@ useEffect(()=>{
     localStorage.setItem("cart",count)
 },[count])
 
+const setFilters = ()=>{
+    setOrderType("");
+    setSearchTerm("");
+}
+
 return (
     <nav className='nav'>
         {user ?
@@ -48,8 +53,9 @@ return (
         : ""}
         {user ?
         <ul>
-            <li><Link to='/home'><FontAwesomeIcon className='home-icon' icon={faHouse} /></Link></li>
+            <li><Link to='/home'><FontAwesomeIcon className='home-icon' icon={faHouse} onClick={()=>setFilters()}/></Link></li>
             <li><Link to="/cart"><FontAwesomeIcon className='cart-icon' icon={faCartShopping} /></Link><span className="circle">{count}</span></li>
+            {user.role == 'ADMIN' ? <li><Link to="/add"><FontAwesomeIcon className='plus-icon' icon={faPlus} /></Link></li> : null}
             <li><Link to="/"><FontAwesomeIcon className='user-icon' icon={faUser} /></Link></li>
             <li><label className='user-label'>{user.firstname}</label></li>
         </ul>
