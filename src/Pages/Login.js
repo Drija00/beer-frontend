@@ -13,6 +13,7 @@ const Login = () => {
 
     const[username,setUsername] = useState("");
     const[password,setPassword] = useState("");
+    const[error,setError] = useState("");
 
     useEffect(()=>{
 
@@ -26,8 +27,10 @@ const Login = () => {
             localStorage.setItem("user",user);
             setUser(user);
             console.log(user+" RAARAAA");
+            setError("");
             navigate("/home");
         }).catch(res => {
+            setError("Please try again!")
             doLogout();
         });
     }
@@ -61,6 +64,7 @@ const Login = () => {
                 <div className='form'>
                     <div className='login-container'>
                         <h1 className = "heading">Login</h1>
+                        <p className="error">{error}</p>
                         <button className='login-btn' onClick={()=>register()}>Register</button>
                     </div>
                     <div className='login-container'>
